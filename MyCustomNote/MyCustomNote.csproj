@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <!-- WPF0001: the built-in Fluent theme (Application.ThemeMode) is still marked as experimental. -->
+    <NoWarn>$(NoWarn);WPF0001</NoWarn>
+
+    <!-- Release information shown in the file properties. -->
+    <AssemblyName>MyCustomNote</AssemblyName>
+    <Product>My Custom Note</Product>
+    <Version>1.0.0</Version>
+    <Company>MyCustomNote</Company>
+    <Description>A local note app with formatting, folders, tags and locked notes.</Description>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyCustomNote.Core\MyCustomNote.Core.csproj" />
+    <ProjectReference Include="..\MyCustomNote.Data\MyCustomNote.Data.csproj" />
+    <ProjectReference Include="..\MyCustomNote.Editor\MyCustomNote.Editor.csproj" />
+  </ItemGroup>
+
+</Project>

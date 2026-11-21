@@ -1,0 +1,33 @@
+## Build output and Visual Studio files
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+*.userprefs
+*.rsuser
+TestResults/
+*.log
+
+## Other editors and system files
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+## Release output of publish.ps1 (upload the zip to a GitHub release instead)
+publish/
+*.zip
+*.nupkg
+
+## App data and secrets must never be committed
+*.db
+*.db-wal
+*.db-shm
+*.converting
+security.json
+settings.json
+*.pfx
+*.snk
+.env

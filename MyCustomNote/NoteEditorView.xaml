@@ -1,0 +1,82 @@
+<UserControl x:Class="MyCustomNote.NoteEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:fmt="clr-namespace:MyCustomNote.Core.Formatting;assembly=MyCustomNote.Core">
+    <Grid Background="{DynamicResource Brush.Window}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Formatting toolbar. The buttons are not focusable, so the editor keeps its selection while you click them. -->
+        <Border x:Name="ToolbarBorder" Grid.Row="0" Padding="20,8"
+                BorderBrush="{DynamicResource Brush.Border}" BorderThickness="0,0,0,1">
+            <StackPanel Orientation="Horizontal">
+                <ToggleButton x:Name="BoldButton" Content="B" FontWeight="Bold" Width="34" Margin="0,0,4,0"
+                              Focusable="False" ToolTip="Bold (Ctrl+B)"
+                              Tag="{x:Static fmt:TextStyleKind.Bold}" Click="Format_Click" />
+                <ToggleButton x:Name="ItalicButton" Content="I" FontStyle="Italic" Width="34" Margin="0,0,4,0"
+                              Focusable="False" ToolTip="Italic (Ctrl+I)"
+                              Tag="{x:Static fmt:TextStyleKind.Italic}" Click="Format_Click" />
+                <ToggleButton x:Name="UnderlineButton" Content="U" Width="34" Margin="0,0,4,0"
+                              Focusable="False" ToolTip="Underline (Ctrl+U)"
+                              Tag="{x:Static fmt:TextStyleKind.Underline}" Click="Format_Click" />
+                <ToggleButton x:Name="StrikeButton" Content="S" Width="34" Margin="0,0,18,0"
+                              Focusable="False" ToolTip="Strikethrough (Ctrl+Shift+X)"
+                              Tag="{x:Static fmt:TextStyleKind.Strikethrough}" Click="Format_Click" />
+                <ToggleButton x:Name="HeadingButton" Content="H" FontWeight="SemiBold" Width="34" Margin="0,0,4,0"
+                              Focusable="False" ToolTip="Heading"
+                              Tag="{x:Static fmt:ParagraphKind.Heading}" Click="Paragraph_Click" />
+                <ToggleButton x:Name="BulletButton" Content="&#8226;" Width="34" Margin="0,0,4,0"
+                              Focusable="False" ToolTip="Bulleted list"
+                              Tag="{x:Static fmt:ParagraphKind.Bullet}" Click="Paragraph_Click" />
+                <ToggleButton x:Name="NumberedButton" Content="1." Width="34"
+                              Focusable="False" ToolTip="Numbered list"
+                              Tag="{x:Static fmt:ParagraphKind.Numbered}" Click="Paragraph_Click" />
+            </StackPanel>
+        </Border>
+
+        <!-- The two editors are created in code (they need a constructor argument) and put into these hosts. -->
+        <Grid x:Name="TitleHost" Grid.Row="1" Margin="24,14,24,0">
+            <TextBlock x:Name="TitlePlaceholder" Text="Title" FontSize="24" IsHitTestVisible="False"
+                       VerticalAlignment="Center" Margin="11,0,0,0"
+                       Foreground="{DynamicResource Brush.TextMuted}" />
+        </Grid>
+
+        <!-- Tags of the note: click a tag to remove it, "+ Tag" adds one. Built in code. -->
+        <WrapPanel x:Name="TagPanel" Grid.Row="2" Margin="24,4,24,0" />
+
+        <Grid x:Name="BodyHost" Grid.Row="3" Margin="24,6,24,0">
+            <TextBlock x:Name="BodyPlaceholder" Text="Start writing..." FontSize="15" IsHitTestVisible="False"
+                       VerticalAlignment="Top" Margin="11,6,0,0"
+                       Foreground="{DynamicResource Brush.TextMuted}" />
+        </Grid>
+
+        <!-- Checklist: rows are built in code (check box, text, remove). -->
+        <Border x:Name="ChecklistBorder" Grid.Row="4" Margin="24,6,24,0" Padding="0,6,0,2"
+                BorderBrush="{DynamicResource Brush.Border}" BorderThickness="0,1,0,0">
+            <StackPanel>
+                <TextBlock Text="Checklist" FontSize="12" FontWeight="SemiBold"
+                           Foreground="{DynamicResource Brush.TextMuted}" />
+                <ScrollViewer MaxHeight="150" VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="ChecklistPanel" />
+                </ScrollViewer>
+                <Button Content="+ Add item" HorizontalAlignment="Left" Margin="0,4,0,2" Padding="8,3"
+                        Click="AddChecklistItem_Click" />
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="5" Padding="24,6"
+                BorderBrush="{DynamicResource Brush.Border}" BorderThickness="0,1,0,0">
+            <Grid>
+                <TextBlock x:Name="StatsText" FontSize="12" Foreground="{DynamicResource Brush.TextMuted}" />
+                <TextBlock x:Name="SaveText" FontSize="12" HorizontalAlignment="Right"
+                           Foreground="{DynamicResource Brush.TextMuted}" />
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,56 @@
+<Window x:Class="MyCustomNote.EditorSpike.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:fmt="clr-namespace:MyCustomNote.Core.Formatting;assembly=MyCustomNote.Core"
+        Title="Editor self-check tool (developer only)" Height="620" Width="900">
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="150" />
+        </Grid.RowDefinitions>
+
+        <!-- Toolbar: buttons are not focusable, so the editor keeps its selection while you click them. -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,8">
+            <ToggleButton x:Name="BoldButton" Content="B" FontWeight="Bold" Width="32" Margin="0,0,4,0"
+                          Focusable="False" Tag="{x:Static fmt:TextStyleKind.Bold}" Click="Format_Click" />
+            <ToggleButton x:Name="ItalicButton" Content="I" FontStyle="Italic" Width="32" Margin="0,0,4,0"
+                          Focusable="False" Tag="{x:Static fmt:TextStyleKind.Italic}" Click="Format_Click" />
+            <ToggleButton x:Name="UnderlineButton" Content="U" Width="32" Margin="0,0,4,0"
+                          Focusable="False" Tag="{x:Static fmt:TextStyleKind.Underline}" Click="Format_Click" />
+            <ToggleButton x:Name="StrikeButton" Content="S" Width="32" Margin="0,0,16,0"
+                          Focusable="False" Tag="{x:Static fmt:TextStyleKind.Strikethrough}" Click="Format_Click" />
+            <ToggleButton x:Name="HeadingButton" Content="H" FontWeight="SemiBold" Width="32" Margin="0,0,4,0"
+                          Focusable="False" Tag="{x:Static fmt:ParagraphKind.Heading}" Click="Paragraph_Click" />
+            <ToggleButton x:Name="BulletButton" Content="&#8226;" Width="32" Margin="0,0,4,0"
+                          Focusable="False" Tag="{x:Static fmt:ParagraphKind.Bullet}" Click="Paragraph_Click" />
+            <ToggleButton x:Name="NumberedButton" Content="1." Width="32" Margin="0,0,16,0"
+                          Focusable="False" Tag="{x:Static fmt:ParagraphKind.Numbered}" Click="Paragraph_Click" />
+            <Button Content="Load sample" Padding="10,2" Margin="0,0,4,0" Focusable="False" Click="LoadSample_Click" />
+            <Button Content="Run self-check" Padding="10,2" Focusable="False" Click="SelfCheck_Click" />
+            <TextBlock Text="  Ctrl+B / I / U, Ctrl+Shift+X = strikethrough. Select text first." VerticalAlignment="Center" Foreground="Gray" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Margin="0,0,0,8">
+            <TextBlock Text="Title (one line)" Foreground="Gray" Margin="0,0,0,2" />
+            <Border x:Name="TitleHost" BorderBrush="Gray" BorderThickness="1" />
+        </StackPanel>
+
+        <DockPanel Grid.Row="2" Margin="0,0,0,8">
+            <TextBlock DockPanel.Dock="Top" Text="Body" Foreground="Gray" Margin="0,0,0,2" />
+            <Border x:Name="BodyHost" BorderBrush="Gray" BorderThickness="1" />
+        </DockPanel>
+
+        <TabControl Grid.Row="3" x:Name="Tabs">
+            <TabItem Header="Live model of the focused field">
+                <TextBox x:Name="LiveBox" IsReadOnly="True" FontFamily="Consolas" TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto" />
+            </TabItem>
+            <TabItem Header="Self-check result">
+                <TextBox x:Name="SelfCheckBox" IsReadOnly="True" FontFamily="Consolas" TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto" />
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

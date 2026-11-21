@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="MyCustomNote.Core.Tests/MyCustomNote.Core.Tests.csproj" />
+  <Project Path="MyCustomNote.Core/MyCustomNote.Core.csproj" />
+  <Project Path="MyCustomNote.Data.Tests/MyCustomNote.Data.Tests.csproj" />
+  <Project Path="MyCustomNote.Data/MyCustomNote.Data.csproj" />
+  <Project Path="MyCustomNote.Editor/MyCustomNote.Editor.csproj" />
+  <Project Path="MyCustomNote.EditorSpike/MyCustomNote.EditorSpike.csproj" />
+  <Project Path="MyCustomNote/MyCustomNote.csproj" />
+</Solution>

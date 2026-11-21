@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Developer tool, not part of the release: opens the editor in a small window and runs the automatic editor self-check
+       (text and styles through a WPF RichTextBox, lists, undo, typing rules). Run it after any change to MyCustomNote.Editor. -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyCustomNote.Core\MyCustomNote.Core.csproj" />
+    <ProjectReference Include="..\MyCustomNote.Editor\MyCustomNote.Editor.csproj" />
+  </ItemGroup>
+
+</Project>

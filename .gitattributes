@@ -1,0 +1,7 @@
+# Let Git normalise line endings (Windows checkouts get CRLF, the repository keeps LF).
+* text=auto
+
+# Binary files
+*.png binary
+*.ico binary
+*.zip binary
