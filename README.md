@@ -11,7 +11,9 @@ A simple note app for your Windows PC. It works offline, and your notes stay on 
 - **Keep things private:** protect the app with a PIN, and lock single notes with a separate PIN.
 - **Move notes in and out:** import and export notes as text, Markdown, web page (HTML) or JSON files. You can also drag files onto the window to import them.
 - **Make it yours:** pick a theme, including one that follows your Windows light or dark mode.
-![Uploading {F9FDBB76-3404-4FCF-A1E3-34845EEE23E7}.png…]()
+
+<img width="960" height="504" alt="{F9FDBB76-3404-4FCF-A1E3-34845EEE23E7}" src="https://github.com/user-attachments/assets/5766c2ac-d95e-458c-b4fe-c9235fdd1304" />
+
 
 ## Download and install
 
