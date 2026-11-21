@@ -1,78 +1,41 @@
 # MyCustomNote for Windows
 
-A local, offline note app for Windows. Your notes stay on your PC, in one folder you can back up. It is the desktop sibling of the Android app MyCustomNote, and notes can be exchanged between the two.
+A simple note app for your Windows PC. It works offline, and your notes stay on your computer.
 
-Built with C# on .NET 10 and WPF.
+## What you can do
 
-## Features
+- **Write notes with style:** bold, italic, underline, strikethrough, headings, bullet lists and numbered lists.
+- **Stay organised:** put notes in folders, add tags and colors, make checklists, and pin the important ones.
+- **Find things fast:** search your notes, and sort them by date, title, or your own order by dragging.
+- **Clear the clutter:** move notes to the archive or the trash. Trash is emptied automatically after 30 days (you can change that).
+- **Keep things private:** protect the app with a PIN, and lock single notes with a separate PIN.
+- **Move notes in and out:** import and export notes as text, Markdown, web page (HTML) or JSON files. You can also drag files onto the window to import them.
+- **Make it yours:** pick a theme, including one that follows your Windows light or dark mode.
 
-- **Rich text:** bold, italic, underline, strikethrough, a heading level, bullet and numbered lists. Choose a style before you type, or select text first. Paste is plain text.
-- **Organise:** folders, tags, color tags, checklists, pinned notes, archive and trash (trash is emptied after 30 days by default, adjustable).
-- **Find and sort:** search, and sort by date created, date modified, title, last opened, or your own drag-and-drop order.
-- **Privacy:**
-  - an app PIN that locks the app on start, when minimised, or after being idle;
-  - locked notes, encrypted with AES-256-GCM under a separate notes PIN (there is no recovery if you forget that PIN);
-  - a hidden-notes area;
-  - optional encryption of the whole database file (SQLCipher).
-- **Import and export:** Markdown, plain text, HTML and JSON. JSON keeps everything (text, styles, lists, folder, tags, checklist, color). You can import by button or by dropping files on the window, and export one note or many at once.
-- **Themes:** several themes, including one that follows Windows.
+## Download and install
 
-Not included: cloud sync, Windows Hello, an installer, an app icon.
+1. Go to the [Releases page](https://github.com/ShinJoy991/My-Custom-Note/releases).
+2. Under **Assets** of the newest release, download the file that ends in `.zip`.
+3. Right-click the zip and choose **Extract All**.
+4. Move the extracted folder somewhere you will keep it, for example `Documents\MyCustomNote`.
+5. Open the folder and double-click **MyCustomNote.exe**.
 
-## Download and run
+You need Windows 10 or 11 (64-bit). Nothing else has to be installed.
 
-Download the zip from the [Releases page](https://github.com/ShinJoy991/My-Custom-Note/releases), unzip it anywhere and start `MyCustomNote.exe`. No .NET installation is needed. The program is not code-signed, so Windows SmartScreen may show a warning the first time.
+**The first time you open it,** Windows may say "Windows protected your PC". That happens because the app is new and not digitally signed. Click **More info**, then **Run anyway**.
 
-Your data lives in `%LOCALAPPDATA%\MyCustomNote` (`notes.db`, `settings.json`, `security.json`). Back that folder up. Deleting it resets the app.
+**Want a shortcut?** Right-click `MyCustomNote.exe` and choose **Pin to taskbar** or **Pin to Start**.
 
-## Build from source
+## Your notes and backups
 
-You need Windows and the .NET 10 SDK (Visual Studio is optional).
+Your notes are saved in a folder on your PC. To open it, press the Windows key + R, type `%LOCALAPPDATA%\MyCustomNote` and press Enter. Copy that folder somewhere safe to make a backup.
 
-```powershell
-git clone https://github.com/ShinJoy991/My-Custom-Note.git
-cd My-Custom-Note
-dotnet build MyCustomNote.slnx
-dotnet test MyCustomNote.slnx
-dotnet run --project MyCustomNote
-```
+**Updating:** download the newer zip and replace the old app files. Your notes stay as they are.
 
-To make the release (a self-contained single file plus a zip):
+**Uninstalling:** delete the app folder. To remove your notes too, also delete the notes folder above.
 
-```powershell
-.\publish.ps1
-```
-
-## Project layout
-
-| Project | What it holds |
-|---|---|
-| `MyCustomNote` | The WPF app: windows, view models, services |
-| `MyCustomNote.Core` | Models, text formatting logic (styles, lists), import and export, sorting, security (PIN hashing, locked-note encryption) |
-| `MyCustomNote.Data` | SQLite storage (including optional SQLCipher encryption) and repositories |
-| `MyCustomNote.Editor` | The rich-text editor control |
-| `MyCustomNote.Core.Tests`, `MyCustomNote.Data.Tests` | Unit tests |
-| `MyCustomNote.EditorSpike` | Developer tool: a small window that runs the automatic editor self-check. Run it after any change to the editor |
-
-How text is stored: a note's text is plain, and its formatting is a list of style ranges (start, end, kind) plus a paragraph kind per line. No formatting characters are mixed into the text, and no regular expressions are used for formatting.
-
-## Using it with the Android app
-
-- Export a note as **JSON** to move it between the apps without losing anything the receiving app can show.
-- The phone app has no real lists or headings: it shows them as text prefixes (`# `, `- `, `1. `). When you import a phone file, the Windows app turns those prefixes back into real lists.
-- Windows files carry a `paragraphs` entry; a JSON file without it is treated as coming from the phone.
-
-## Security notes
-
-- PINs are stored as salted PBKDF2-SHA256 hashes (210,000 iterations).
-- Locked notes are written to disk only in encrypted form. Their key is protected by the notes PIN, so a forgotten notes PIN means those notes cannot be recovered.
-- Whole-database encryption is the newest feature. Back up `%LOCALAPPDATA%\MyCustomNote` before turning it on.
-- The app has not had an independent security review.
-
-## Third-party packages
-
-CommunityToolkit.Mvvm, Microsoft.Data.Sqlite and SQLitePCLRaw (SQLCipher bundle). Check each package's own license before redistributing.
+**Important:** if you lock a note and then forget its PIN, that note cannot be opened again. Keep your PIN somewhere safe.
 
 ## License
 
-MIT, see [LICENSE](LICENSE).
+Free to use under the MIT license. See [LICENSE](LICENSE).
