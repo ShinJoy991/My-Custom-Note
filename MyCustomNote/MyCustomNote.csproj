@@ -16,6 +16,9 @@
     <Company>MyCustomNote</Company>
     <Description>A local note app with formatting, folders, tags and locked notes.</Description>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+
+    <!-- The app icon (Explorer, taskbar, window). Used as soon as the file is in the Assets folder. -->
+    <ApplicationIcon Condition="Exists('Assets\app.ico')">Assets\app.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
